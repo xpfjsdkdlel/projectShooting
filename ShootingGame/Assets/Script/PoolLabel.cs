@@ -4,5 +4,15 @@ using UnityEngine;
 
 public class PoolLabel : MonoBehaviour
 {
-    protected ObjectPool objectPool;
+    protected ObjectPool pool;
+
+    public virtual void Create(ObjectPool pool)
+    {
+        this.pool = pool;
+        gameObject.SetActive(false);
+    }
+    public virtual void Push()
+    {
+        pool.Push(this);
+    }
 }

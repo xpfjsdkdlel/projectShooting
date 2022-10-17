@@ -18,7 +18,7 @@ public class ObjectPool : MonoBehaviour
         objActiveCount = 0;
         Allocate();
     }
-    GameObject allocateobj;
+    private GameObject allocateobj;
     void Allocate()
     {
         for(int i = 0;i<allocatecount;i++)
@@ -40,8 +40,11 @@ public class ObjectPool : MonoBehaviour
     }
     public void Push(PoolLabel obj)
     {
-        obj.gameObject.SetActive(false);
-        poolStack.Push(obj);
-        objActiveCount--;
+        if (obj.gameObject.activeSelf)
+        {
+            obj.gameObject.SetActive(false);
+            poolStack.Push(obj);
+            objActiveCount--;
+        }
     }
 }
