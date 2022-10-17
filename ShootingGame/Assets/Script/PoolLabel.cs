@@ -15,4 +15,8 @@ public class PoolLabel : MonoBehaviour
     {
         pool.Push(this);
     }
+    public virtual void Init()
+    {
+
+    }
 }

@@ -6,6 +6,14 @@ public enum ObjectType
 {
     ObjT_Projectile_01,
     ObjT_Projectile_02,
+    ObjT_Projectile_03,
+    ObjT_Projectile_04,
+    ObjT_Projectile_05,
+    ObjT_Projectile_06,
+    ObjT_Enemy_01,
+    ObjT_Enemy_02,
+    ObjT_Enemy_03,
+    ObjT_Effect_01
 }
 public class ObjectPoolManager : MonoBehaviour
 {

@@ -21,7 +21,7 @@ public class ObjectPool : MonoBehaviour
     private GameObject allocateobj;
     void Allocate()
     {
-        for(int i = 0;i<allocatecount;i++)
+        for (int i = 0; i < allocatecount; i++)
         {
             allocateobj = Instantiate(poolObj, this.transform);
             allocateobj.GetComponent<PoolLabel>().Create(this);
@@ -34,6 +34,7 @@ public class ObjectPool : MonoBehaviour
         if (objActiveCount >= objMaxCount)
             Allocate();
         PoolLabel label = poolStack.Pop();
+        label.Init();
         label.gameObject.SetActive(true);
         objActiveCount++;
         return label.gameObject;

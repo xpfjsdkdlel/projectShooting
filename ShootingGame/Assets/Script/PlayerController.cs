@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     Vector2 clampMin;
     [SerializeField]
     Vector2 clampMax;
+    [SerializeField]
+    private float attackRate;
 
     private bool isMove;
     public bool ISMOVE
@@ -27,7 +29,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         isMove = false;
-        GetComponent<Weapon>().Init(pre,0.01f);
+        GetComponent<Weapon>().Init(pre,attackRate);
     }
     void Update()
     {
