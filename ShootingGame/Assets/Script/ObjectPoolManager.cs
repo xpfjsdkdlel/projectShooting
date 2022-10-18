@@ -13,7 +13,10 @@ public enum ObjectType
     ObjT_Enemy_01,
     ObjT_Enemy_02,
     ObjT_Enemy_03,
-    ObjT_Effect_01
+    ObjT_Effect_01,
+    ObjT_AlertLine_01,
+    ObjT_Meteorite_01,
+    ObjT_Item_01,
 }
 public class ObjectPoolManager : MonoBehaviour
 {

@@ -35,14 +35,25 @@ public class EnemyChar : PoolLabel
     GameObject effectObj;
     public void OnDie()
     {
-        Push();
         effectObj = ObjectPoolManager.Instance.pools[(int)ObjectType.ObjT_Effect_01].Pop();
         effectObj.transform.position = transform.position;
+        DropItem();
+        Push();
     }
     private IEnumerator HitColor()
     {
         sr.color = Color.red;
         yield return YieldInstructionCache.WaitForSeconds(0.05f);
         sr.color = Color.white;
+    }
+    private GameObject obj;
+    private void DropItem()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            obj = ObjectPoolManager.Instance.pools[(int)ObjectType.ObjT_Item_01].Pop();
+            obj.transform.position = transform.position;
+            obj.transform.rotation = Quaternion.identity;
+        }
     }
 }
