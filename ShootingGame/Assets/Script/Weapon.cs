@@ -36,4 +36,9 @@ public class Weapon : MonoBehaviour
             yield return YieldInstructionCache.WaitForSeconds(attackRate);
         }
     }
+    private GameObject obj;
+    public void LunchBoom()
+    {
+        obj = ObjectPoolManager.Instance.pools[(int)ObjectType.ObjT_PlayerBoom_01].Pop();
+    }
 }

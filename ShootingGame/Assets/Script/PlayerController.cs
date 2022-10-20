@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
         isMove = false;
         GetComponent<Weapon>().Init(pre,attackRate);
     }
+    [SerializeField]
+    private GameObject boom;
     void Update()
     {
         if(isMove)
@@ -42,5 +44,13 @@ public class PlayerController : MonoBehaviour
 
             transform.position = pos;
         }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            GetComponent<Weapon>().LunchBoom();
+        }
+    }
+    public void TakeDamage(int damage)
+    {
+
     }
 }

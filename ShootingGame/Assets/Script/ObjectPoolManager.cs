@@ -17,6 +17,7 @@ public enum ObjectType
     ObjT_AlertLine_01,
     ObjT_Meteorite_01,
     ObjT_Item_01,
+    ObjT_PlayerBoom_01,
 }
 public class ObjectPoolManager : MonoBehaviour
 {
