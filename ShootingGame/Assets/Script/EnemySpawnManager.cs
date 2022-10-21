@@ -14,6 +14,8 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject textWarning;
     [SerializeField]
+    private GameObject bossName;
+    [SerializeField]
     private List<GameObject> bossObjects;
     private void Awake()
     {
@@ -47,6 +49,7 @@ public class EnemySpawnManager : MonoBehaviour
     IEnumerator SpawnBoss()
     {
         textWarning.SetActive(true);
+        bossName.SetActive(true);
         yield return YieldInstructionCache.WaitForSeconds(3f);
         textWarning.SetActive(false);
         bossObjects[0].GetComponent<Boss>().Init();

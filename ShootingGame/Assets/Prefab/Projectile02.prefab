@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 15
-  moveDirection: {x: 0, y: 1, z: 0}
+  moveDirection: {x: 0, y: -1, z: 0}
 --- !u!114 &4252801634941079359
 MonoBehaviour:
   m_ObjectHideFlags: 0

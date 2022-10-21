@@ -6,6 +6,7 @@ public enum BossState
 {
     BS_MoveToAppear,
     BS_Phase01,
+    BS_Phase02,
 }
 public class Boss : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Boss : MonoBehaviour
     private BossState bossState = BossState.BS_MoveToAppear;
     private Movement2D movement;
     private BossWeapon weapon;
+    private BossHP bossHP;
 
     private Vector3 startPos = new Vector3(0f, 7f, 0f);
 
@@ -21,6 +23,7 @@ public class Boss : MonoBehaviour
     {
         movement = GetComponent<Movement2D>();
         weapon = GetComponent<BossWeapon>();
+        bossHP = GetComponent<BossHP>();
     }
 
     public void Init()
@@ -28,6 +31,7 @@ public class Boss : MonoBehaviour
         transform.position = startPos;
         gameObject.SetActive(true);
         ChangeState(BossState.BS_MoveToAppear);
+        bossHP.InitState();
     }
 
     public void ChangeState(BossState newState)
@@ -45,15 +49,32 @@ public class Boss : MonoBehaviour
             if (transform.position.y <= bossAppearPoint)
             {
                 movement.MoveTo(Vector3.zero);
+                ChangeState(BossState.BS_Phase01);
             }
             yield return null;
         }
     }
     private IEnumerator BS_Phase01()
     {
-        while(true)
+        weapon.StartFiring(AttackType.AT_CircleFire);
+        while (true)
         {
-            weapon.StartFiring(AttackType.AT_CircleFire);
+            yield return null;
+        }
+    }
+    Vector2 dir;
+    private IEnumerator BS_Phase02()
+    {
+        weapon.StartFiring(AttackType.AT_SingleFireToCenterPosition);
+        dir = Vector2.right;
+        movement.MoveTo(dir);
+        while (true)
+        {
+            if (transform.position.x <= -2.6f || transform.position.x >= 2.6)
+            {
+                dir *= -1;
+                movement.MoveTo(dir);
+            }
             yield return null;
         }
     }

@@ -13,9 +13,14 @@ public class Projectile : PoolLabel
             pc.TakeDamage(1);
             Push();
         }
-        if(collision.CompareTag(TargetTag) && collision.TryGetComponent<EnemyChar>(out EnemyChar ec))
+        if (collision.CompareTag(TargetTag) && collision.TryGetComponent<EnemyChar>(out EnemyChar ec))
         {
             ec.TakeDamage(1);
+            Push();
+        }
+        if (collision.CompareTag(TargetTag) && collision.TryGetComponent<BossHP>(out BossHP boss))
+        {
+            boss.TakeDamage(1);
             Push();
         }
     }

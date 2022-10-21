@@ -391,6 +391,7 @@
 "Assets/Script/AlertLine.cs"
 "Assets/Script/BackgroundScript.cs"
 "Assets/Script/Boss.cs"
+"Assets/Script/BossHP.cs"
 "Assets/Script/BossWarning.cs"
 "Assets/Script/BossWeapon.cs"
 "Assets/Script/DestroyArea.cs"
