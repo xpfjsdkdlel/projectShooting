@@ -49,8 +49,9 @@ public class EnemySpawnManager : MonoBehaviour
     IEnumerator SpawnBoss()
     {
         textWarning.SetActive(true);
-        bossName.SetActive(true);
         yield return YieldInstructionCache.WaitForSeconds(3f);
+        bossName.SetActive(true);
+        SoundManager.Inst.ChangeBGM(BGM_Type.BGM_BOSS01);
         textWarning.SetActive(false);
         bossObjects[0].GetComponent<Boss>().Init();
     }

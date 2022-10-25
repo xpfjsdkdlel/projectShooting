@@ -410,6 +410,7 @@
 "Assets/Script/PlayerController.cs"
 "Assets/Script/PoolLabel.cs"
 "Assets/Script/Projectile.cs"
+"Assets/Script/SoundManager.cs"
 "Assets/Script/Weapon.cs"
 "Assets/Script/YieldInstructionCache.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
