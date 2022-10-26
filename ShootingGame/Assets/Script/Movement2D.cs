@@ -10,10 +10,10 @@ public class Movement2D : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private void Update()
     {
-        transform.position += moveSpeed * moveDirection * Time.deltaTime;
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
     }
     public void MoveTo(Vector2 dir)
     {
-        moveDirection = dir;
+        moveDirection = dir.normalized;
     }
 }

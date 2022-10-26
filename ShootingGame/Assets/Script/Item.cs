@@ -38,7 +38,7 @@ public class Item : PoolLabel
     {
         if (collision.CompareTag("Player"))
         {
-            // todo : 획득으로 인한 점수 증가
+            GameManager.Inst.AddScore(15);
             Push();
         }
     }

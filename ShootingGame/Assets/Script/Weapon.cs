@@ -7,10 +7,20 @@ public class Weapon : MonoBehaviour
     private bool isInit = false;
     private GameObject projectilePrefab;
     private float attackRate;
-    private AudioSource audioSource;
+
+    private int boom;
+    public int BoomCount
+    {
+        get { return boom; }
+        set 
+        { 
+            boom = value;
+            GameManager.Inst.ChangeBoomText(boom);
+        }
+    }
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        BoomCount = 3;
     }
     public void Init(GameObject projectile, float rate)
     {
@@ -41,15 +51,14 @@ public class Weapon : MonoBehaviour
             yield return YieldInstructionCache.WaitForSeconds(attackRate);
         }
     }
-    public void PlaySound(AudioClip clip)
-    {
-        audioSource.Stop();
-        audioSource.clip = clip;
-        audioSource.Play();
-    }
     private GameObject obj;
     public void LunchBoom()
     {
-        obj = ObjectPoolManager.Instance.pools[(int)ObjectType.ObjT_PlayerBoom_01].Pop();
+        if(BoomCount > 0)
+        {
+            obj = ObjectPoolManager.Instance.pools[(int)ObjectType.ObjT_PlayerBoom_01].Pop();
+            obj.transform.position = transform.position;
+            BoomCount--;
+        }
     }
 }

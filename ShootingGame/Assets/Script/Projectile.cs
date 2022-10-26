@@ -8,9 +8,9 @@ public class Projectile : PoolLabel
     private string TargetTag;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(TargetTag) && collision.TryGetComponent<PlayerController>(out PlayerController pc))
+        if (collision.CompareTag(TargetTag) && collision.TryGetComponent<PlayerState>(out PlayerState ps))
         {
-            pc.TakeDamage(1);
+            ps.TakeDamage(1);
             Push();
         }
         if (collision.CompareTag(TargetTag) && collision.TryGetComponent<EnemyChar>(out EnemyChar ec))

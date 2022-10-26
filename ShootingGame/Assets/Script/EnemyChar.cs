@@ -42,6 +42,7 @@ public class EnemyChar : PoolLabel
         effectObj = ObjectPoolManager.Instance.pools[(int)ObjectType.ObjT_Effect_01].Pop();
         effectObj.transform.position = transform.position;
         DropItem();
+        GameManager.Inst.AddScore(5);
         isAlive = false;
         Push();
     }
@@ -61,5 +62,8 @@ public class EnemyChar : PoolLabel
             obj.transform.position = transform.position;
             obj.transform.rotation = Quaternion.identity;
         }
+        obj = ObjectPoolManager.Instance.pools[(int)ObjectType.ObjT_Item_03H].Pop();
+        obj.transform.position = transform.position;
+        obj.transform.rotation = Quaternion.identity;
     }
 }

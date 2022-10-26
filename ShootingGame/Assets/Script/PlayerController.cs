@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         isMove = false;
         GetComponent<Weapon>().Init(pre,attackRate);
+        GetComponent<PlayerState>().InitChar();
     }
     [SerializeField]
     private GameObject boom;
@@ -48,9 +49,5 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<Weapon>().LunchBoom();
         }
-    }
-    public void TakeDamage(int damage)
-    {
-
     }
 }

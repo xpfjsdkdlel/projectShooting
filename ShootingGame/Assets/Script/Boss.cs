@@ -56,7 +56,7 @@ public class Boss : MonoBehaviour
     }
     private IEnumerator BS_Phase01()
     {
-        weapon.StartFiring(AttackType.AT_CircleFire);
+        weapon.StartFiring(AttackType.AT_CircleFire2);
         while (true)
         {
             yield return null;
