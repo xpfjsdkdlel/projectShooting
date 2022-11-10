@@ -26,12 +26,12 @@ public class Boss : MonoBehaviour
         bossHP = GetComponent<BossHP>();
     }
 
-    public void Init()
+    public void Init(string name, int newHP)
     {
         transform.position = startPos;
         gameObject.SetActive(true);
         ChangeState(BossState.BS_MoveToAppear);
-        bossHP.InitState();
+        bossHP.InitState(name, newHP);
     }
 
     public void ChangeState(BossState newState)

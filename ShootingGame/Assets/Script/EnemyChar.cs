@@ -10,16 +10,16 @@ public class EnemyChar : PoolLabel
     private int MaxHP;
     private SpriteRenderer sr;
     private bool isAlive;
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if(collision.CompareTag("Player") && collision.GetComponent<Projectile>())
-    //    {
-    //        collision.GetComponent<Projectile>().Push();
-    //        TakeDamage(1);
-    //        if (currentHP <= 0)
-    //            OnDie();
-    //    }
-    //}
+    [SerializeField]
+    private int returnScore;
+    public void TakeDamage(int damage)
+    {
+        currentHP -= damage;
+        StopCoroutine("HitColor");
+        StartCoroutine("HitColor");
+        if (currentHP <= 0)
+            OnDie();
+    }
     public override void Init()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -28,13 +28,10 @@ public class EnemyChar : PoolLabel
         sr.color = Color.white;
         isAlive = true;
     }
-    public void TakeDamage(int damage)
+    public void SetEnemyLevel(int newMaxHp, int newScore)
     {
-        currentHP -= damage;
-        StopCoroutine("HitColor");
-        StartCoroutine("HitColor");
-        if (currentHP <= 0)
-            OnDie();
+        currentHP = MaxHP = newMaxHp;
+        returnScore = newScore;
     }
     GameObject effectObj;
     public void OnDie()
@@ -44,6 +41,7 @@ public class EnemyChar : PoolLabel
         DropItem();
         GameManager.Inst.AddScore(5);
         isAlive = false;
+        SoundManager.Inst.PlaySFX(sfx_Type.sfx_EnemyDie);
         Push();
     }
     private IEnumerator HitColor()
@@ -62,8 +60,19 @@ public class EnemyChar : PoolLabel
             obj.transform.position = transform.position;
             obj.transform.rotation = Quaternion.identity;
         }
-        obj = ObjectPoolManager.Instance.pools[(int)ObjectType.ObjT_Item_03H].Pop();
-        obj.transform.position = transform.position;
-        obj.transform.rotation = Quaternion.identity;
+        int randValue = Random.RandomRange(1, 100);
+        if(randValue < 2)
+        {
+            obj = ObjectPoolManager.Instance.pools[(int)ObjectType.ObjT_Item_02B].Pop();
+            obj.transform.position = transform.position;
+            obj.transform.rotation = Quaternion.identity;
+        }
+        else if(randValue < 4)
+        {
+            obj = ObjectPoolManager.Instance.pools[(int)ObjectType.ObjT_Item_03H].Pop();
+            obj.transform.position = transform.position;
+            obj.transform.rotation = Quaternion.identity;
+        }
+
     }
 }

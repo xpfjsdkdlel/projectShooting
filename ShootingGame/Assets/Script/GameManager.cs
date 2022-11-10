@@ -44,4 +44,19 @@ public class GameManager : MonoBehaviour
         this.score += score;
         scoreText.text = "SCORE : " + this.score.ToString();
     }
+    public void SaveScore()
+    {
+        int EXP = PlayerPrefs.GetInt(SAVE_TYPE.SAVE_EXP.ToString());
+        int Level = PlayerPrefs.GetInt(SAVE_TYPE.SAVE_Level.ToString());
+        int Gold = PlayerPrefs.GetInt(SAVE_TYPE.SAVE_GOLD.ToString());
+
+        EXP += (score / 1000);
+        Level += EXP / 300;
+        EXP %= 300;
+        Gold += (score / 100);
+
+        PlayerPrefs.SetInt(SAVE_TYPE.SAVE_EXP.ToString(), EXP);
+        PlayerPrefs.SetInt(SAVE_TYPE.SAVE_Level.ToString(), Level);
+        PlayerPrefs.SetInt(SAVE_TYPE.SAVE_GOLD.ToString(), Gold);
+    }
 }

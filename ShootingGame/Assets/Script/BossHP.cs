@@ -25,12 +25,12 @@ public class BossHP : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
     }
-    public void InitState()
+    public void InitState(string name, int newHP)
     {
-        currentHP = maxHP;
-        sr.color = Color.white;
+        currentHP = newHP;
+        sr.color = Color.red;
         isAlive = true;
-        bossNameText.text = bossName;
+        bossNameText.text = name;
     }
     public void TakeDamage(int damage)
     {
@@ -46,12 +46,15 @@ public class BossHP : MonoBehaviour
             }
         }
     }
+    [SerializeField]
+    EnemySpawnManager enemySpawn;
     private void OnDie()
     {
         DropItem();
         isAlive = false;
         gameObject.SetActive(false);
         transform.position = new Vector3(0f, 7f, 0f);
+        enemySpawn.StartWave();
     }
     private IEnumerator HitColor()
     {

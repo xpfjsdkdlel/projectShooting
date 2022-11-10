@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlayerState : MonoBehaviour
 {
     [SerializeField]
+    private GameOver gameOver;
+    [SerializeField]
+    private GameObject inputArea;
+    [SerializeField]
     private int currentHP;
     public int CHP
     {
@@ -36,6 +40,7 @@ public class PlayerState : MonoBehaviour
             if(CHP <= 0)
             {
                 isAlive = false;
+                OnDie();
             }
         }
     }
@@ -48,6 +53,14 @@ public class PlayerState : MonoBehaviour
     }
     private void OnDie()
     {
-
+        gameObject.GetComponent<Animator>().SetTrigger("OnDie");
+    }
+    public void DieProcess()
+    {
+        gameOver.GetComponent<GameOver>().SetGameOverUI();
+        GetComponent<Weapon>().IsFireing = false;
+        inputArea.SetActive(false);
+        gameObject.SetActive(false);
+        Debug.Log("ªÁ∏¡ µø¿€¿Ã ≥°≥µΩ¿¥œ¥Ÿ");
     }
 }
